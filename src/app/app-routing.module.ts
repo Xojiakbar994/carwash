@@ -4,17 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'add',
-    loadChildren: () =>
-      import('./wash-entry-form/wash-entry-form.module').then(
-        (m) => m.WashEntryFormModule
-      ),
+    loadChildren: () => import('./wash-entry-form/wash-entry-form.module').then((m) => m.WashEntryFormModule),
   },
   {
     path: 'list',
-    loadChildren: () =>
-      import('./wash-entry-list/wash-entry-list.module').then(
-        (m) => m.WashEntryListModule
-      ),
+    loadChildren: () => import('./wash-entry-list/wash-entry-list.module').then((m) => m.WashEntryListModule),
   },
 ];
 
