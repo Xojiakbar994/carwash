@@ -1,12 +1,12 @@
 <form>
   <mat-form-field appearance="fill">
     <mat-label>Kim</mat-label>
-    <input matInput />
+    <input matInput readonly value="Alish" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Qachon</mat-label>
-    <input matInput />
+    <input matInput readonly value="03.08.2022" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -31,7 +31,12 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Xizmat turi</mat-label>
-    <input matInput />
+    <mat-select>
+      <mat-option value="volvo">Karcher (10000)</mat-option>
+      <mat-option value="saab">Polniy (50000)</mat-option>
+      <mat-option value="mercedes">Ximchistka (500000)</mat-option>
+      <mat-option value="audi">Polirovka (200000)</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -39,5 +44,8 @@
     <input matInput />
   </mat-form-field>
 
-  <div class="div"><button>Qo'shish</button><button>Bekor qilish</button></div>
+  <div class="div">
+    <button mat-button>Qo'shish</button>
+    <button mat-button>Bekor qilish</button>
+  </div>
 </form>
