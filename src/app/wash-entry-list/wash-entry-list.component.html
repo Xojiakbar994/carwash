@@ -1,1 +1,68 @@
-<p>wash-entry-list works!</p>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  (matSortChange)="announceSortChange($event)"
+  class="mat-elevation-z8"
+>
+  <!-- Washer Column -->
+  <ng-container matColumnDef="washer">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ishchi bo'yicha sortirovka">Ishchi</th>
+    <td mat-cell *matCellDef="let element">{{ element.washer }}</td>
+  </ng-container>
+
+  <!-- date Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sana bo'yicha sortirovka">Sana</th>
+    <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+  </ng-container>
+
+  <!-- plateNumber Column -->
+  <ng-container matColumnDef="plateNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="GosNomer bo'yicha sortirovka">
+      GosNomer
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.plateNumber }}</td>
+  </ng-container>
+
+  <!-- model Column -->
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Moshina modeli bo'yicha sortirovka">
+      Moshina Modeli
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.model }}</td>
+  </ng-container>
+
+  <!-- color Column -->
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Moshina rangi bo'yicha sortirovka">
+      Moshina rangi
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.color }}</td>
+  </ng-container>
+
+  <!-- carBodyType Column -->
+  <ng-container matColumnDef="carBodyType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Moshina kuzovi bo'yicha sortirovka">
+      Kuzov turi
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.carBodyType }}</td>
+  </ng-container>
+
+  <!-- serviceType Column -->
+  <ng-container matColumnDef="serviceType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Xizmat turi bo'yicha sortirovka">
+      Xizmat turi
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.serviceType }}</td>
+  </ng-container>
+
+  <!-- price Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Narx bo'yicha sortirovka">Narx</th>
+    <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
