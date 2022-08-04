@@ -2,6 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 export interface WashEntry {
   washer: string;
@@ -66,6 +67,7 @@ const ELEMENT_DATA: WashEntry[] = [
     price: '45000',
   },
 ];
+
 @Component({
   selector: 'app-wash-entry-list',
   templateUrl: './wash-entry-list.component.html',
@@ -84,9 +86,19 @@ export class WashEntryListComponent implements AfterViewInit {
   ];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer, private firestore: Firestore) {}
 
   @ViewChild(MatSort) sort!: MatSort;
+
+  ngOnInit() {
+    // создаём ссылку в коллекции washEntries в firebase
+    const washEntriesRef = collection(this.firestore, `washEntries`);
+
+    // делаем запрос к коллекции в firebase
+    collectionData(washEntriesRef, { idField: 'uid' }).subscribe((entries) => {
+      this.dataSource.data = entries as WashEntry[];
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
