@@ -12,61 +12,8 @@ export interface WashEntry {
   color: string;
   carBodyType: string;
   serviceType: string;
-  price: string;
+  price: number;
 }
-
-const ELEMENT_DATA: WashEntry[] = [
-  {
-    date: '04.08.2022',
-    washer: 'Alish',
-    plateNumber: '01L230GB',
-    model: 'Cobalt',
-    color: 'white',
-    carBodyType: 'sedan',
-    serviceType: 'polniy',
-    price: '50000',
-  },
-  {
-    date: '04.08.2022',
-    washer: 'Botir',
-    plateNumber: '01L889GB',
-    model: 'Lacetti',
-    color: 'white',
-    carBodyType: 'sedan',
-    serviceType: 'polniy',
-    price: '50000',
-  },
-  {
-    date: '02.08.2022',
-    washer: 'Qodir',
-    plateNumber: '01L851GB',
-    model: 'Matiz',
-    color: 'white',
-    carBodyType: 'sedan',
-    serviceType: 'polniy',
-    price: '30000',
-  },
-  {
-    date: '01.08.2022',
-    washer: 'Ali',
-    plateNumber: '01L456GB',
-    model: 'Cobalt',
-    color: 'white',
-    carBodyType: 'sedan',
-    serviceType: 'polniy',
-    price: '50000',
-  },
-  {
-    date: '03.08.2022',
-    washer: 'Hayrulla',
-    plateNumber: '01L987GB',
-    model: 'Nexia',
-    color: 'white',
-    carBodyType: 'sedan',
-    serviceType: 'polniy',
-    price: '45000',
-  },
-];
 
 @Component({
   selector: 'app-wash-entry-list',
@@ -75,6 +22,7 @@ const ELEMENT_DATA: WashEntry[] = [
 })
 export class WashEntryListComponent implements AfterViewInit {
   displayedColumns: string[] = [
+    'index',
     'washer',
     'date',
     'plateNumber',
@@ -84,7 +32,7 @@ export class WashEntryListComponent implements AfterViewInit {
     'serviceType',
     'price',
   ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<WashEntry>();
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private firestore: Firestore) {}
 
@@ -115,5 +63,9 @@ export class WashEntryListComponent implements AfterViewInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  getTotalCost() {
+    return this.dataSource.data.map((t) => t.price).reduce((acc, value) => acc + value, 0);
   }
 }
