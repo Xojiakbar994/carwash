@@ -1,32 +1,32 @@
-<form>
+<form [formGroup]="entryForm">
   <mat-form-field appearance="fill">
     <mat-label>Kim</mat-label>
-    <input matInput readonly value="Alish" />
+    <input matInput readonly formControlName="washer" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Qachon</mat-label>
-    <input matInput readonly value="03.08.2022" />
+    <input matInput readonly formControlName="date" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Nomer</mat-label>
-    <input matInput />
+    <input matInput formControlName="plateNumber" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Model</mat-label>
-    <input matInput />
+    <input matInput formControlName="model" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Rang</mat-label>
-    <input matInput />
+    <input matInput formControlName="color" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kuzov turi</mat-label>
-    <mat-select>
+    <mat-select formControlName="carBodyType">
       <mat-option value="volvo">A-B-C tur kuzov (Matiz, Nexia, Cobolt)</mat-option>
       <mat-option value="saab">D-E-F tur kuzov (Malibu, Camry)</mat-option>
       <mat-option value="mercedes">Krosover miniven (Captiva, Jeep)</mat-option>
@@ -35,7 +35,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Xizmat turi</mat-label>
-    <mat-select>
+    <mat-select formControlName="serviceType">
       <mat-option value="saab">Polniy moyka</mat-option>
       <mat-option value="volvo">Kuzov moyka</mat-option>
       <mat-option value="audi">Artish, vosk, quritish</mat-option>
@@ -47,11 +47,11 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Narx</mat-label>
-    <input matInput readonly />
+    <input matInput readonly formControlName="price" />
   </mat-form-field>
 
   <div class="div">
-    <button mat-button>Qo'shish</button>
-    <button mat-button>Bekor qilish</button>
+    <button type="button" mat-button (click)="save()">Qo'shish</button>
+    <button type="button" mat-button>Bekor qilish</button>
   </div>
 </form>
