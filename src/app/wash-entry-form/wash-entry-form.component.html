@@ -51,7 +51,9 @@
   </mat-form-field>
 
   <div class="div tugmalar">
-    <button type="button" mat-raised-button color="primary" (click)="save()">Qo'shish</button>
+    <button type="button" mat-raised-button color="primary" (click)="save()" [disabled]="entryForm.invalid">
+      Qo'shish
+    </button>
     <button type="button" mat-raised-button color="warn">Bekor qilish</button>
   </div>
 </form>

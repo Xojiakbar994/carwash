@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
 
@@ -10,14 +10,14 @@ import { addDoc } from 'firebase/firestore';
 })
 export class WashEntryFormComponent implements OnInit {
   entryForm = new FormGroup({
-    washer: new FormControl('Alish'),
-    date: new FormControl(this.getCurrentDate()),
-    plateNumber: new FormControl(''),
-    model: new FormControl(''),
+    washer: new FormControl('Alish', Validators.required),
+    date: new FormControl(this.getCurrentDate(), Validators.required),
+    plateNumber: new FormControl('', Validators.required),
+    model: new FormControl('', Validators.required),
     color: new FormControl(''),
-    carBodyType: new FormControl(''),
-    serviceType: new FormControl(''),
-    price: new FormControl(''),
+    carBodyType: new FormControl('', Validators.required),
+    serviceType: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
   });
 
   constructor(private firestore: Firestore) {}
