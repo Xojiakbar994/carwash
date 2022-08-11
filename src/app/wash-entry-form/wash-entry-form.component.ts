@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
+import { __values } from 'tslib';
+
+const PRICE_TABLE = [
+  [11000, 21000, 31000, 41000, 51000, 61000],
+  [12000, 22000, 32000, 42000, 52000, 62000],
+  [13000, 23000, 33000, 43000, 53000, 63000],
+];
 
 @Component({
   selector: 'app-wash-entry-form',
@@ -15,14 +22,21 @@ export class WashEntryFormComponent implements OnInit {
     plateNumber: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
     color: new FormControl(''),
-    carBodyType: new FormControl('', Validators.required),
-    serviceType: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
+    carBodyType: new FormControl(null, Validators.required),
+    serviceType: new FormControl(null, Validators.required),
+    price: new FormControl(0, Validators.required),
   });
 
   constructor(private firestore: Firestore) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.entryForm.valueChanges.subscribe((values) => {
+      if (values.carBodyType != null && values.serviceType != null) {
+        const price = PRICE_TABLE[values.carBodyType][values.serviceType];
+        this.entryForm.controls.price.setValue(price, { onlySelf: true });
+      }
+    });
+  }
 
   getCurrentDate() {
     const today = new Date();

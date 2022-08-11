@@ -27,21 +27,21 @@
   <mat-form-field appearance="fill">
     <mat-label>Kuzov turi</mat-label>
     <mat-select formControlName="carBodyType">
-      <mat-option value="small">A-B-C tur kuzov (Matiz, Nexia, Cobolt)</mat-option>
-      <mat-option value="medium">D-E-F tur kuzov (Malibu, Camry)</mat-option>
-      <mat-option value="large">Krosover miniven (Captiva, Jeep)</mat-option>
+      <mat-option [value]="0">A-B-C tur kuzov (Matiz, Nexia, Cobolt)</mat-option>
+      <mat-option [value]="1">D-E-F tur kuzov (Malibu, Camry)</mat-option>
+      <mat-option [value]="2">Krosover miniven (Captiva, Jeep)</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Xizmat turi</mat-label>
     <mat-select formControlName="serviceType">
-      <mat-option value="full">Polniy moyka</mat-option>
-      <mat-option value="bodyOnly">Kuzov moyka</mat-option>
-      <mat-option value="dry">Artish, vosk, quritish</mat-option>
-      <mat-option value="salon">Salon tozalash</mat-option>
-      <mat-option value="karcher">Karcher</mat-option>
-      <mat-option value="chemical">Ximchistka</mat-option>
+      <mat-option [value]="0">Polniy moyka</mat-option>
+      <mat-option [value]="1">Kuzov moyka</mat-option>
+      <mat-option [value]="2">Artish, vosk, quritish</mat-option>
+      <mat-option [value]="3">Salon tozalash</mat-option>
+      <mat-option [value]="4">Karcher</mat-option>
+      <mat-option [value]="5">Ximchistka</mat-option>
     </mat-select>
   </mat-form-field>
 
