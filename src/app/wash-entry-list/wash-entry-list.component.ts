@@ -2,7 +2,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface WashEntry {
   washer: string;
@@ -31,10 +32,11 @@ export class WashEntryListComponent implements AfterViewInit {
     'carBodyType',
     'serviceType',
     'price',
+    'actions',
   ];
   dataSource = new MatTableDataSource<WashEntry>();
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private firestore: Firestore) {}
+  constructor(private liveAnnouncer: LiveAnnouncer, private firestore: Firestore, private snackBar: MatSnackBar) {}
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -59,13 +61,24 @@ export class WashEntryListComponent implements AfterViewInit {
     // Furthermore, you can customize the message to add additional
     // details about the values being sorted.
     if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+      this.liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+      this.liveAnnouncer.announce('Sorting cleared');
     }
   }
 
   getTotalCost() {
     return this.dataSource.data.map((t) => t.price).reduce((acc, value) => acc + value, 0);
+  }
+
+  removeItem(uid: string) {
+    if (confirm("Rostan o'chirmoqchimisiz?")) {
+      // создаём ссылку в washEntries в firebase
+      const washEntryRef = doc(this.firestore, `washEntries/${uid}`);
+
+      deleteDoc(washEntryRef);
+
+      this.snackBar.open("O'chirildi", 'OK', { duration: 2000 });
+    }
   }
 }
