@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
-import { __values } from 'tslib';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 const PRICE_TABLE = [
   [11000, 21000, 31000, 41000, 51000, 61000],
@@ -27,7 +28,7 @@ export class WashEntryFormComponent implements OnInit {
     price: new FormControl(0, Validators.required),
   });
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private snackBar: MatSnackBar, private router: Router) {}
 
   ngOnInit(): void {
     this.entryForm.valueChanges.subscribe((values) => {
@@ -53,5 +54,9 @@ export class WashEntryFormComponent implements OnInit {
 
     //создаём документ в firebase
     addDoc(washEntriesRef, this.entryForm.value);
+
+    this.snackBar.open('Sizning malumotlaringiz muvafaqiyatli jonatildi', 'ok', { duration: 2000 });
+
+    this.router.navigateByUrl('list');
   }
 }
