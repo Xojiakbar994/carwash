@@ -1,5 +1,10 @@
 form {
   display: grid;
   width: 300px;
-  margin: 20px auto; 
+  margin: 20px auto;
+}
+
+.tugmalar {
+  display: flex;
+  justify-content: space-around;
 }
