@@ -1,6 +1,6 @@
 export const COLOR_TYPES = [
   { name: 'Qora', value: 'black' },
-  { name: 'Oq', value: 'white' },
+  { name: 'Oq', value: '#ddd' },
   { name: 'Kok', value: 'blue' },
   { name: 'Stalnoy', value: 'darkgray' },
   { name: 'Qizil', value: 'red' },

@@ -49,7 +49,12 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Moshina rangi bo'yicha sortirovka">
       Moshina rangi
     </th>
-    <td mat-cell *matCellDef="let element">{{ colorTypes[element.color]?.name }}</td>
+    <td mat-cell *matCellDef="let element">
+      <div class="color-wrapper" *ngIf="colorTypes[element.color] as color">
+        <mat-icon [style.color]="color.value">airport_shuttle</mat-icon>
+        <span>{{ color.name }}</span>
+      </div>
+    </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 

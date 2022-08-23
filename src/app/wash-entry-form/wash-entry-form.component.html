@@ -22,7 +22,17 @@
   <mat-form-field appearance="fill">
     <mat-label>Rang</mat-label>
     <mat-select formControlName="color">
-      <mat-option [value]="i" *ngFor="let item of colorTypes; let i = index">{{ item.name }}</mat-option>
+      <mat-select-trigger>
+        <ng-container *ngIf="entryForm.controls.color.value as colorIndex">
+          <div class="color-wrapper">
+            <mat-icon [style.color]="colorTypes[+colorIndex].value">airport_shuttle</mat-icon>
+            {{ colorTypes[+colorIndex].name }}
+          </div>
+        </ng-container>
+      </mat-select-trigger>
+      <mat-option [value]="i" *ngFor="let item of colorTypes; let i = index">
+        <mat-icon [style.color]="item.value">airport_shuttle</mat-icon>{{ item.name }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 

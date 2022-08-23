@@ -5,3 +5,8 @@ table {
 th.mat-sort-header-sorted {
   color: black;
 }
+
+.color-wrapper {
+  display: flex;
+  gap: 6px;
+}
