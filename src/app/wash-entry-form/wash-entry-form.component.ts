@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { SERVICE_TYPES } from '../models/service-types';
 import { CAR_BODY_TYPES } from '../models/car-body-types';
 import { PRICE_TABLE } from '../models/price-table';
+import { COLOR_TYPES } from '../models/color-types';
 
 @Component({
   selector: 'app-wash-entry-form',
@@ -16,6 +17,7 @@ import { PRICE_TABLE } from '../models/price-table';
 export class WashEntryFormComponent implements OnInit {
   serviceTypes = SERVICE_TYPES;
   carBodyTypes = CAR_BODY_TYPES;
+  colorTypes = COLOR_TYPES;
 
   entryForm = new FormGroup({
     washer: new FormControl('Alish', Validators.required),

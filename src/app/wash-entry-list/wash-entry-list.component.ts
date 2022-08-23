@@ -6,6 +6,7 @@ import { Firestore, collection, collectionData, deleteDoc, doc } from '@angular/
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CAR_BODY_TYPES } from '../models/car-body-types';
 import { SERVICE_TYPES } from '../models/service-types';
+import { COLOR_TYPES } from '../models/color-types';
 
 export interface WashEntry {
   washer: string;
@@ -26,6 +27,7 @@ export interface WashEntry {
 export class WashEntryListComponent implements AfterViewInit {
   carBodyTypes = CAR_BODY_TYPES;
   serviceTypes = SERVICE_TYPES;
+  colorTypes = COLOR_TYPES;
 
   displayedColumns: string[] = [
     'index',

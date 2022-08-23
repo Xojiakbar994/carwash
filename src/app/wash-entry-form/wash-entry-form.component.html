@@ -21,7 +21,9 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Rang</mat-label>
-    <input matInput formControlName="color" />
+    <mat-select formControlName="color">
+      <mat-option [value]="i" *ngFor="let item of colorTypes; let i = index">{{ item.name }}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
