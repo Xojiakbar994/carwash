@@ -4,6 +4,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Firestore, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CAR_BODY_TYPES } from '../models/car-body-types';
+import { SERVICE_TYPES } from '../models/service-types';
 
 export interface WashEntry {
   washer: string;
@@ -22,6 +24,9 @@ export interface WashEntry {
   styleUrls: ['./wash-entry-list.component.scss'],
 })
 export class WashEntryListComponent implements AfterViewInit {
+  carBodyTypes = CAR_BODY_TYPES;
+  serviceTypes = SERVICE_TYPES;
+
   displayedColumns: string[] = [
     'index',
     'washer',
