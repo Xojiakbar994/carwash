@@ -4,12 +4,9 @@ import { Firestore, collection } from '@angular/fire/firestore';
 import { addDoc } from 'firebase/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
-const PRICE_TABLE = [
-  [11000, 21000, 31000, 41000, 51000, 61000],
-  [12000, 22000, 32000, 42000, 52000, 62000],
-  [13000, 23000, 33000, 43000, 53000, 63000],
-];
+import { SERVICE_TYPES } from '../models/service-types';
+import { CAR_BODY_TYPES } from '../models/car-body-types';
+import { PRICE_TABLE } from '../models/price-table';
 
 @Component({
   selector: 'app-wash-entry-form',
@@ -17,6 +14,9 @@ const PRICE_TABLE = [
   styleUrls: ['./wash-entry-form.component.scss'],
 })
 export class WashEntryFormComponent implements OnInit {
+  serviceTypes = SERVICE_TYPES;
+  carBodyTypes = CAR_BODY_TYPES;
+
   entryForm = new FormGroup({
     washer: new FormControl('Alish', Validators.required),
     date: new FormControl(this.getCurrentDate(), Validators.required),

@@ -27,21 +27,14 @@
   <mat-form-field appearance="fill">
     <mat-label>Kuzov turi</mat-label>
     <mat-select formControlName="carBodyType">
-      <mat-option [value]="0">A-B-C tur kuzov (Matiz, Nexia, Cobolt)</mat-option>
-      <mat-option [value]="1">D-E-F tur kuzov (Malibu, Camry)</mat-option>
-      <mat-option [value]="2">Krosover miniven (Captiva, Jeep)</mat-option>
+      <mat-option [value]="i" *ngFor="let item of carBodyTypes; let i = index">{{ item }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Xizmat turi</mat-label>
     <mat-select formControlName="serviceType">
-      <mat-option [value]="0">Polniy moyka</mat-option>
-      <mat-option [value]="1">Kuzov moyka</mat-option>
-      <mat-option [value]="2">Artish, vosk, quritish</mat-option>
-      <mat-option [value]="3">Salon tozalash</mat-option>
-      <mat-option [value]="4">Karcher</mat-option>
-      <mat-option [value]="5">Ximchistka</mat-option>
+      <mat-option [value]="i" *ngFor="let item of serviceTypes; let i = index">{{ item }}</mat-option>
     </mat-select>
   </mat-form-field>
 
