@@ -11,7 +11,7 @@ import { switchMap } from 'rxjs/operators';
 export interface User {
   uid: string;
   email: string;
-  photoUrl?: string;
+  photoURL?: string;
   displayName?: string;
 }
 
@@ -45,7 +45,7 @@ export class AuthService {
     return this.router.navigate(['/']);
   }
 
-  private updateUserData({ uid, email, displayName, photoUrl }: any) {
+  private updateUserData({ uid, email, displayName, photoURL }: any) {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
@@ -54,7 +54,7 @@ export class AuthService {
       uid,
       email,
       displayName,
-      photoUrl,
+      photoURL,
     };
     return userRef.set(data, { merge: true });
   }
