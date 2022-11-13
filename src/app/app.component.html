@@ -2,16 +2,18 @@
   <span>Mening moykam</span>
   <a mat-button routerLink="/add">Kiritish</a>
   <a mat-button routerLink="/list">Malumotlar</a>
+
+  <div class="fill-remaining-space"></div>
+
+  <div class="user-info" *ngIf="auth.user$ | async as user; else login">
+    <img class="profile-img" [src]="user.photoURL" />
+    <span>{{ user.displayName }}</span>
+    <button mat-button class="button" (click)="auth.signOut()">Sign Out</button>
+  </div>
+
+  <ng-template #login>
+    <button mat-button class="button" (click)="auth.googleSignin()">Login with Google</button>
+  </ng-template>
 </mat-toolbar>
-
-<div *ngIf="auth.user$ | async as user; else login">
-  <pre>{{ user | json }}</pre>
-  <hr />
-  <button class="button" (click)="auth.signOut()">Sign Out</button>
-</div>
-
-<ng-template #login>
-  <button class="button" (click)="auth.googleSignin()">Login with Google</button>
-</ng-template>
 
 <router-outlet></router-outlet>
