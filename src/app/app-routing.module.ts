@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'list',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./wash-entry-list/wash-entry-list.module').then((m) => m.WashEntryListModule),
   },
 ];
